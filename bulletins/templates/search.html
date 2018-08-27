@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <br/>
+  <div class="col-md-12">
+    <div class="span3 well" style="background-color:#fff; border-color:#ccc; box-shadow: 0 0 3px 0 #ccc">
+    <div class="row">
+        <div class="col-md-8">
+        <h1>Find a Community</h1>
+        <form action="{% url 'searchfor' %}" class="card card-sm" method="post">
+          {% csrf_token %}
+          <div class="card-body row no-gutters align-items-center">
+
+            <div class="col">
+              <input class="form-control form-control-lg form-control-borderless" type="search" id="searchname" name="searchname" placeholder="Search for a community...">
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-lg btn-success" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      </div>
+      </div>
+
+</div>
+{% endblock %}

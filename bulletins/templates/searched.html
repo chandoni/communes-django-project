@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <section class="content">
+        <h3>Results</h3>
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="pull-left">
+                <p>Results found: {{ results_found }} for {{ searchname }}. Total pages: {{ total_pages }}</p>
+              </div>
+              <div class="table-container">
+                <table class="table table-filter">
+                  <tbody>
+                    {% for community in communities_found %}
+                    <tr>
+                      <td>
+                        <a href="javascript:;" class="star">
+                          <i class="glyphicon glyphicon-star"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="media">
+                          <a href="{% url 'bullet' community.name %}" class="pull-left">
+                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                          </a>
+                          <div class="media-body">
+                            <span class="media-meta pull-right"></span>
+                            <h4 class="title">
+                              {{ community.name }}
+                              <span class="pull-right"></span>
+                            </h4>
+                            <p class="summary"></p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="row clearfix">
+                <div class="col-md-12 column">
+                  <ul class="pagination">
+                    <li>
+                      <a href="/bulletins/search/results/{{searchname}}/1">First</a>
+                    </li>
+                      {% if cur_page > 1 %}
+                        <li>
+                          <a href="/bulletins/search/results/{{searchname}}/{{communities_found.previous_page_number}}">Prev</a>
+                        </li>
+                      {% endif %}
+                      {% if total_pages > 1 and cur_page != total_pages %}
+                        <li>
+                           <a href="/bulletins/search/results/{{searchname}}/{{communities_found.next_page_number}}">Next</a>
+                        </li>
+                        <li>
+                          <a href="/bulletins/search/results/{{searchname}}/{{total_pages}}">Last</a>
+                        </li>
+                      {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

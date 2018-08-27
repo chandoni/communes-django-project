@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    {% if user.is_authenticated and user.username == uname %}
+    <div class="col-md-5  toppad  pull-right col-md-offset-5 ">
+         <a href="#">Edit Profile</a>
+     <br>
+    </div>
+    {% endif %}
+      <div class="col-xs-12 col-sm-12 col-md-8 toppad">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="background-color:#f17777;">
+            <h3 class="panel-title" style="color: #fff;">Profile</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="img-circle img-responsive"> </div>
+              <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>Username:</td>
+                      <td>{{ uname }}</td>
+                    </tr>
+                    <tr>
+                      <td>Account created:</td>
+                      <td>{{ joindate }}</td>
+                    </tr>
+                    <tr>
+                      <td>Total bulletins created:</td>
+                      <td>{{ total_bulletins }}</td>
+                    </tr>
+                    <tr>
+                      <td>Member of Communities:</td>
+                      <td>
+                        {% for c in communities %}
+                          <p>{{ c }}
+                        {% endfor %}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <a href="#" class="btn btn-primary">Poke</a>
+                <a href="#" class="btn btn-primary">Slap</a>
+              </div>
+            </div>
+          </div>
+               <div class="panel-footer">
+                      <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                      <span class="pull-right">
+                          <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                          <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                      </span>
+                  </div>
+
+        </div>
+    </div>
+  </div>
+{% endblock %}
